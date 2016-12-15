@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Restrict characters in string output</title>
+</head>
+
+  <style>
+    .copy-block {
+      width: 300px;
+      margin-bottom: 1rem;
+    }
+
+    .ellipsis:after {
+      content: ' ...';
+    }
+  </style>
+<body>
+  <div data-truncate class="copy-block">
+    You probably haven't heard of them af brooklyn, crucifix pour-over cardigan fixie microdosing. 3 wolf moon VHS fashion axe, four dollar toast edison bulb meggings shabby chic normcore banjo tbh hexagon photo booth vape PBR.
+  </div>
+  <div data-truncate class="copy-block">
+    Why Hi Master Blaster! Are you hear to take over the planet and destroy all living things?
+  </div>
+
+  <script>
+    function truncateBlock(selector, characterLimit) {
+      const fullString = document.querySelectorAll(selector);
+
+      for (let i = 0; i < fullString.length; i++) {
+        let truncateString = fullString[i].innerText;
+
+        if(truncateString.length > characterLimit) {
+          truncateString = truncateString.substring(0,characterLimit);
+          fullString[i].className += ' ellipsis';
+        }
+
+        fullString[i].innerText = truncateString;
+      }
+    };
+
+    truncateBlock('[data-truncate]', 128);
+  </script>
+</body>
+</html>
